@@ -26,3 +26,6 @@ copy on the graph itself. With these structures you can alter their graph
 counter-part rather than creating manual graph traversals.
 */
 package model
+
+// VertexID is
+type VertexID interface{}

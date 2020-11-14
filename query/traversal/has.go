@@ -20,7 +20,11 @@
 
 package traversal
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+	"reflect"
+)
 
 // http://tinkerpop.apache.org/docs/current/reference/#has-step
 
@@ -61,6 +65,8 @@ func (g String) Has(first interface{}, params ...interface{}) String {
 // HasID(string (P))
 func (g String) HasID(objOrP interface{}, objs ...string) String {
 	var p []interface{}
+
+	log.Println(reflect.TypeOf(objOrP).String())
 
 	p = append(p, objOrP)
 

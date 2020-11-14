@@ -22,8 +22,6 @@ package traversal
 
 import (
 	"fmt"
-	"log"
-	"reflect"
 )
 
 // http://tinkerpop.apache.org/docs/current/reference/#has-step
@@ -66,9 +64,12 @@ func (g String) Has(first interface{}, params ...interface{}) String {
 func (g String) HasID(objOrP interface{}, objs ...string) String {
 	var p []interface{}
 
-	log.Println(reflect.TypeOf(objOrP).String())
-
-	p = append(p, objOrP)
+	switch t := objOrP.(type) {
+	case map[string]interface{}:
+		p = append(p, t["@value"])
+	default:
+		p = append(p, objOrP)
+	}
 
 	for _, s := range objs {
 		p = append(p, s)

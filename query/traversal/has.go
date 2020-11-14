@@ -66,7 +66,11 @@ func (g String) HasID(objOrP interface{}, objs ...string) String {
 
 	switch t := objOrP.(type) {
 	case map[string]interface{}:
-		p = append(p, t["@value"])
+		if valuePart, ok := t["@value"]; ok {
+			p = append(p, valuePart)
+		} else {
+			p = append(p, objOrP)
+		}
 	default:
 		p = append(p, objOrP)
 	}

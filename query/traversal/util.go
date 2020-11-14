@@ -23,8 +23,6 @@ package traversal
 import (
 	"bytes"
 	"fmt"
-	"log"
-	"reflect"
 	"strconv"
 	"strings"
 )
@@ -79,7 +77,7 @@ func (g *String) AddStep(step string, params ...interface{}) {
 	g.buffer.WriteString("." + step + "(")
 
 	for i, p := range params {
-		log.Println(reflect.TypeOf(p).String())
+		fmt.Printf("%v", p)
 		switch t := p.(type) {
 		case String:
 			g.buffer.WriteString(t.Raw().String())
